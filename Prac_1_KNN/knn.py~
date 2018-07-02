@@ -1,0 +1,7 @@
+import pandas as pd
+
+df = pd.read_csv("/home/oslab5/Siddhesh_ML/Prac_1_KNN/Data/all/train.csv")
+
+data = df.iloc[:, 1:]
+labels = df.iloc[:, 0]
+
