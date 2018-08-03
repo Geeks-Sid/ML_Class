@@ -18,6 +18,7 @@ NEW_SIP = [SIP[i] + SIP[i+1] + SIP[i+2] + SIP[i+3] for i in range(0, 8, 4)]
 NEW_DIP = [DIP[i] + DIP[i+1] + DIP[i+2] + DIP[i+3] for i in range(0, 8, 4)]
 print("Source IP:", NEW_SIP)
 print("Destination IP:", NEW_DIP)
+
 print("============CHECKING============")
 CSUM = int('0000', 16)
 for i in range(2):
@@ -35,6 +36,7 @@ print('HEX CSUM = ', hex(new_csum))
 print(65536 - (CSUM+new_csum))    
 print('=========CREATING NEW PACKET===========')
 ip = ip + hex(new_csum)[2:]
+
 print('=========CHECKING NEW IP PACKET ==========')
 x = list(ip)
 SIP = x[-20:-12]
@@ -45,3 +47,8 @@ CSUM = x[-4:]
 t = int('0000', 16)
 for i in range(0, 20, 4):
     t += int(''.join(x[i:i+4]), 16)
+t = (t%65536 + t//65536)
+if t%65536 == 0:
+    print("THE NEW IP PACKET WAS NOT DAMAGED")
+else:
+    print("THE NEW IP PACKET WAS DAMAGED")
