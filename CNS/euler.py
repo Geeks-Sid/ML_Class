@@ -16,13 +16,24 @@ def get_factors(n):
         else:
             i+=1
     return factors
-            
-x = get_factors(60)
 
-phi = 60
+print("Enter the values of a, b and c in the form of a^b mod c: ")
+a = int(input())
+b = int(input())
+c = int(input())
+
+phi = c
+x = get_factors(c)
 for key in x:
     print(key, x[key])
     t = float((1 - (1/int(key))))
     print("T",t)
     phi = phi * t
-    print(phi)
+print(phi)
+phi = int(phi)
+rem = b % phi
+div = b // phi
+print("(",a,"^", phi,"(", div, ")", ".", a,"^", rem, "%", "", b)
+print("Final = ", a, "^", rem, " = mod", c)
+print("Ans =", (a ** rem)%c)
+
